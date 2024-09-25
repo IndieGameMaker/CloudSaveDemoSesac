@@ -3,9 +3,12 @@ using System.Threading.Tasks;
 using Unity.Services.Core;
 using Unity.Services.Authentication;
 using System;
+using UnityEngine.UI;
 
 public class CloudSaveManager : MonoBehaviour
 {
+    public Button loginButton;
+
     private async void Awake()
     {
         // UGS 초기화 성공했을 때 호출되는 콜백

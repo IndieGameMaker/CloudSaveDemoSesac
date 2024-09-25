@@ -4,16 +4,22 @@ using TMPro;
 using Unity.Services.Authentication;
 using Unity.Services.Core;
 using Unity.Services.Leaderboards;
+using Unity.Services.Leaderboards.Models;
 using UnityEngine;
 using UnityEngine.UI;
+using System.Collections.Generic;
 
 public class ScoreManager : MonoBehaviour
 {
     [Header("UI")]
     [SerializeField] private Button saveScoreButton;
+    [SerializeField] private Button allScoreButton;
     [SerializeField] private TMP_InputField scoreIf;
 
     private const string leaderboardId = "Ranking";
+
+    // 점수를 저장할 리스트
+    public List<LeaderboardEntry> entries = new();
 
     private async void Awake()
     {
@@ -44,5 +50,13 @@ public class ScoreManager : MonoBehaviour
         var response = await LeaderboardsService.Instance.GetPlayerScoreAsync(leaderboardId);
         scoreIf.text = response.Score.ToString();
         Debug.Log(JsonConvert.SerializeObject(response));
+    }
+
+    private async Task GetAllScores()
+    {
+        var response = await LeaderboardsService.Instance.GetScoresAsync(leaderboardId);
+        Debug.Log(JsonConvert.SerializeObject(response));
+
+        entries = response.Results;
     }
 }

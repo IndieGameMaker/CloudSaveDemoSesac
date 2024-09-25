@@ -9,7 +9,9 @@ using Unity.Services.CloudSave;
 
 public class CloudSaveManager : MonoBehaviour
 {
+    [Header("UI Button")]
     public Button loginButton;
+    public Button saveSingleDataButton;
 
     private async void Awake()
     {
@@ -38,6 +40,10 @@ public class CloudSaveManager : MonoBehaviour
         loginButton.onClick.AddListener(async () =>
         {
             await SignIn();
+        });
+        saveSingleDataButton.onClick.AddListener(async () =>
+        {
+            await SaveSingleData();
         });
     }
 

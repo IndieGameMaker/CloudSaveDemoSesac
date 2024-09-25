@@ -7,11 +7,34 @@ using UnityEngine.UI;
 using System.Collections.Generic;
 using Unity.Services.CloudSave;
 
+[System.Serializable]
+public struct PlayerData
+{
+    public string name;
+    public int level;
+    public int xp;
+    public int gold;
+
+    public List<ItemData> items;
+}
+
+[Serializable]
+public struct ItemData
+{
+    public string name;
+    public int value;
+    public int count;
+    public string icon;
+}
+
 public class CloudSaveManager : MonoBehaviour
 {
     [Header("UI Button")]
     public Button loginButton;
     public Button saveSingleDataButton;
+
+    [Header("Player Data")]
+    public PlayerData playerData;
 
     private async void Awake()
     {

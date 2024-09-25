@@ -122,6 +122,9 @@ public class CloudSaveManager : MonoBehaviour
         // 저장 메소드
         await CloudSaveService.Instance.Data.Player.SaveAsync(data);
         Debug.Log("복수 데이터 저장 완료");
+
+        // playerData 삭제
+        playerData = new PlayerData();
     }
 
     // 싱글 데이터 로드
@@ -141,7 +144,12 @@ public class CloudSaveManager : MonoBehaviour
         };
 
 
-        var data = await CloudSaveService.Instance.Data.Player.LoadAsync(fields);
+        //var data = await CloudSaveService.Instance.Data.Player.LoadAsync(fields);
+
+        var data = await CloudSaveService.Instance.Data.Player.LoadAsync(new HashSet<string>
+        {
+            "player_name", "level", "xp", "gold"
+        });
 
         if (data.TryGetValue("player_name", out var playerName))
         {
@@ -154,6 +162,17 @@ public class CloudSaveManager : MonoBehaviour
         if (data.TryGetValue("gold", out var gold))
         {
             Debug.Log($"Gold : {gold.Value.GetAs<string>()}");
+        }
+    }
+
+    // 복수 데이터 로드
+    private async Task LoadMultiData<T>(string key) // "PlayerData"
+    {
+        var loadData = await CloudSaveService.Instance.Data.Player.LoadAsync(new HashSet<string> { key });
+
+        if (loadData.TryGetValue(key, out var data))
+        {
+            playerData = data.Value.GetAs<PlayerData>();
         }
     }
 

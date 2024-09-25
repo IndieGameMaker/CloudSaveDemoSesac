@@ -117,4 +117,48 @@ public class CloudSaveManager : MonoBehaviour
         await CloudSaveService.Instance.Data.Player.SaveAsync(data);
         Debug.Log("복수 데이터 저장 완료");
     }
+
+    // 싱글 데이터 로드
+    private async Task LoadSingleData()
+    {
+        /*
+        var fields = new HashSet<string>();
+        fields.Add("player_name");
+        fields.Add("level");
+        fields.Add("xp");
+        fields.Add("gold");
+        */
+
+        var fields = new HashSet<string>
+        {
+            "player_name", "level", "xp", "gold"
+        };
+
+
+        var data = await CloudSaveService.Instance.Data.Player.LoadAsync(fields);
+
+        if (data.TryGetValue("player_name", out var playerName))
+        {
+            Debug.Log($"Player Name : {playerName.Value.GetAs<string>()}");
+        }
+        if (data.TryGetValue("level", out var level))
+        {
+            Debug.Log($"Player LV : {level.Value.GetAs<string>()}");
+        }
+        if (data.TryGetValue("gold", out var gold))
+        {
+            Debug.Log($"Gold : {gold.Value.GetAs<string>()}");
+        }
+    }
+
+
+    /*
+        HashSet<T> 자료형
+        - 중복값을 허용하지 않는다.
+        - 검색속도가 빠르다. O(1)
+        - 인덱스 기반으로 값을 추출할 수 없다. TryGetValue 사용
+        List<int> items = new List<int>();
+        ...
+        items[21]
+    */
 }

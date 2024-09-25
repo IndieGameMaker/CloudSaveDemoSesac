@@ -68,5 +68,27 @@ public class ScoreManager : MonoBehaviour
         }
 
         Debug.Log(ranking);
+
+        await Task.Delay(2000);
+        await GetScoreByPage();
+
+    }
+    // 페이징 처리
+    private async Task GetScoreByPage()
+    {
+        var options = new GetScoresOptions
+        {
+            Offset = 10,
+            Limit = 20
+        };
+
+        // 5 + 자신 + 5
+        var options2 = new GetPlayerRangeOptions
+        {
+            RangeLimit = 5
+        };
+
+        var response = await LeaderboardsService.Instance.GetScoresAsync(leaderboardId, options);
+        Debug.Log(JsonConvert.SerializeObject(response));
     }
 }

@@ -41,6 +41,9 @@ public class CloudSaveManager : MonoBehaviour
 
     private async Task SignIn()
     {
+        if (AuthenticationService.Instance.IsSignedIn) return;
+
         await AuthenticationService.Instance.SignInAnonymouslyAsync();
     }
+
 }

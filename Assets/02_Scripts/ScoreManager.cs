@@ -36,6 +36,8 @@ public class ScoreManager : MonoBehaviour
 
         // Add Score 버튼 클릭 이벤트 연결
         saveScoreButton.onClick.AddListener(async () => await AddScore(int.Parse(scoreIf.text)));
+        // 모든 스코어 버튼 클릭 이벤트 연결
+        allScoreButton.onClick.AddListener(async () => await GetAllScores());
     }
 
     private async Task AddScore(int score)

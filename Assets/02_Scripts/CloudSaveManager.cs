@@ -41,6 +41,7 @@ public class CloudSaveManager : MonoBehaviour
         {
             await SignIn();
         });
+        // 싱글 데이터 버튼 클릭 이벤트 연결
         saveSingleDataButton.onClick.AddListener(async () =>
         {
             await SaveSingleData();

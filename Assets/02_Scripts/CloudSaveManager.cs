@@ -32,6 +32,7 @@ public class CloudSaveManager : MonoBehaviour
     [Header("UI Button")]
     public Button loginButton;
     public Button saveSingleDataButton;
+    public Button saveMultiDataButton;
 
     [Header("Player Data")]
     public PlayerData playerData;
@@ -69,6 +70,8 @@ public class CloudSaveManager : MonoBehaviour
         {
             await SaveSingleData();
         });
+
+
     }
 
     private async Task SignIn()

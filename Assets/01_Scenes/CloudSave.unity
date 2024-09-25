@@ -1242,6 +1242,28 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   loginButton: {fileID: 257819604}
   saveSingleDataButton: {fileID: 3764935}
+  playerData:
+    name: Zackiller
+    level: 99
+    xp: 2000
+    gold: 300
+    items:
+    - name: sword
+      value: 20
+      count: 1
+      icon: icons/sword.png
+    - name: spear
+      value: 50
+      count: 1
+      icon: icons/spear.png
+    - name: axe
+      value: 100
+      count: 2
+      icon: icons/axe.png
+    - name: healer
+      value: 10
+      count: 5
+      icon: icons/healer.png
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

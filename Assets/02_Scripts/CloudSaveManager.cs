@@ -32,8 +32,11 @@ public class CloudSaveManager : MonoBehaviour
             Debug.Log($"익명 로그인 성공\nPlayerId: <color=#00ff00>{playerId}</color>");
         };
 
-        // 익명 로그인
-        await SignIn();
+        // 로그인 버튼 클릭 이벤트 연결
+        loginButton.onClick.AddListener(async () =>
+        {
+            await SignIn();
+        });
     }
 
     private async Task SignIn()

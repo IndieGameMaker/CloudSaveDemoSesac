@@ -982,6 +982,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f7f39717a7eb45bbbf9dce4e52615ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  loginButton: {fileID: 257819604}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

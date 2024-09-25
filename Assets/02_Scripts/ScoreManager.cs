@@ -7,8 +7,8 @@ public class ScoreManager : MonoBehaviour
     private async void Awake()
     {
         await UnityServices.InitializeAsync();
-        await AuthenticationService.Instance.SignInAnonymouslyAsync();
 
         AuthenticationService.Instance.SignedIn += () => Debug.Log("로그인 완료");
+        await AuthenticationService.Instance.SignInAnonymouslyAsync();
     }
 }

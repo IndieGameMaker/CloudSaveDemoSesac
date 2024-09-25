@@ -4,6 +4,8 @@ using Unity.Services.Core;
 using Unity.Services.Authentication;
 using System;
 using UnityEngine.UI;
+using System.Collections.Generic;
+using Unity.Services.CloudSave;
 
 public class CloudSaveManager : MonoBehaviour
 {
@@ -44,6 +46,24 @@ public class CloudSaveManager : MonoBehaviour
         if (AuthenticationService.Instance.IsSignedIn) return;
 
         await AuthenticationService.Instance.SignInAnonymouslyAsync();
+    }
+
+    // 단일 데이터 저장
+    private async Task SaveSingleData()
+    {
+        // 저장할 데이터 선언
+        var data = new Dictionary<string, object>
+        {
+            {"player_name", "Zackiller"},
+            {"level", 30},
+            {"xp", 2000},
+            {"gold", 100}
+        };
+
+        // Cloud 저장
+        await CloudSaveService.Instance.Data.Player.SaveAsync(data);
+
+        Debug.Log("싱글 데이터 저장 완료");
     }
 
 }

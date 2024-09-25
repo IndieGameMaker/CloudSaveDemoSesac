@@ -70,7 +70,11 @@ public class CloudSaveManager : MonoBehaviour
         {
             await SaveSingleData();
         });
-
+        // 멀티 데이터 버튼 클릭
+        saveMultiDataButton.onClick.AddListener(async () =>
+        {
+            await SaveMultiData<PlayerData>("PlayerData", playerData);
+        });
 
     }
 

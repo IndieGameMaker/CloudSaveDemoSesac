@@ -19,7 +19,13 @@ public class ScoreManager : MonoBehaviour
     {
         await UnityServices.InitializeAsync();
 
-        AuthenticationService.Instance.SignedIn += () => Debug.Log("로그인 완료");
+        AuthenticationService.Instance.SignedIn += async () =>
+        {
+            Debug.Log("로그인 완료");
+            // 기존 점수 불러오기
+            await GetPlayerScore();
+        };
+
         await AuthenticationService.Instance.SignInAnonymouslyAsync();
 
         // Add Score 버튼 클릭 이벤트 연결
@@ -30,6 +36,13 @@ public class ScoreManager : MonoBehaviour
     {
         var response = await LeaderboardsService.Instance.AddPlayerScoreAsync(leaderboardId, score);
 
+        Debug.Log(JsonConvert.SerializeObject(response));
+    }
+
+    private async Task GetPlayerScore()
+    {
+        var response = await LeaderboardsService.Instance.GetPlayerScoreAsync(leaderboardId);
+        scoreIf.text = response.Score.ToString();
         Debug.Log(JsonConvert.SerializeObject(response));
     }
 }

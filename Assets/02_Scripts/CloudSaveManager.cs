@@ -33,6 +33,7 @@ public class CloudSaveManager : MonoBehaviour
     public Button loginButton;
     public Button saveSingleDataButton;
     public Button saveMultiDataButton;
+    public Button loadSingleDataButton, loadMultiDataButton;
 
     [Header("Player Data")]
     public PlayerData playerData;

@@ -533,7 +533,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -5.8983, y: -168}
+  m_AnchoredPosition: {x: -5.898285, y: -168}
   m_SizeDelta: {x: -57.918, y: 59.6174}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &482539037
@@ -1303,7 +1303,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   saveScoreButton: {fileID: 3764935}
-  allScoreButton: {fileID: 0}
+  allScoreButton: {fileID: 482539037}
   scoreIf: {fileID: 1131483233}
 --- !u!4 &1570114634
 Transform:

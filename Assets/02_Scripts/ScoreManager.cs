@@ -78,7 +78,7 @@ public class ScoreManager : MonoBehaviour
     {
         var options = new GetScoresOptions
         {
-            Offset = 10,
+            Offset = 1,
             Limit = 20
         };
 
@@ -91,4 +91,5 @@ public class ScoreManager : MonoBehaviour
         var response = await LeaderboardsService.Instance.GetScoresAsync(leaderboardId, options);
         Debug.Log(JsonConvert.SerializeObject(response));
     }
+
 }

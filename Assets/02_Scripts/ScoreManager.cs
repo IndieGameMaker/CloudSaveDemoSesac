@@ -60,5 +60,13 @@ public class ScoreManager : MonoBehaviour
         Debug.Log(JsonConvert.SerializeObject(response));
 
         entries = response.Results;
+
+        string ranking = "";
+        foreach (var entry in entries)
+        {
+            ranking += $"[{entry.Rank + 1}] {entry.PlayerName} : {entry.Score}\n";
+        }
+
+        Debug.Log(ranking);
     }
 }

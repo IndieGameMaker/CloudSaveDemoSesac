@@ -1,6 +1,8 @@
 using UnityEngine;
 using System.Threading.Tasks;
 using Unity.Services.Core;
+using Unity.Services.Authentication;
+using System;
 
 public class CloudSaveManager : MonoBehaviour
 {
@@ -20,5 +22,19 @@ public class CloudSaveManager : MonoBehaviour
         // UGS 초기화
         await UnityServices.InitializeAsync();
 
+        // 익명 사용자로 로그인 성공했을 때 호출되는 콜백
+        AuthenticationService.Instance.SignedIn += () =>
+        {
+            string playerId = AuthenticationService.Instance.PlayerId;
+            Debug.Log($"익명 로그인 성공\nPlayerId: <color=#00ff00>{playerId}</color>");
+        };
+
+        // 익명 로그인
+        await SignIn();
+    }
+
+    private async Task SignIn()
+    {
+        await AuthenticationService.Instance.SignInAnonymouslyAsync();
     }
 }
